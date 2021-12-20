@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "users/")
+@RequestMapping(value = "/users")
 public class UserController {
 
     private final UserService userService;
@@ -27,13 +27,13 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<Set<UserDto>>findAll(){
-//Връщаме set от Users, foreach-ваме го със stream, с map ги конвертираме към userDto и ги връщаме необратно в нов Set.
+
         return ResponseEntity.ok(userService.findAll()
                 .stream()
                 .map(userConverter::toUserDto)
                 .collect(Collectors.toSet()));
     }
-//Конвертираме userDto към user и го запазваме в нов user. Новият user го конвертираме към userDto
+
     @PostMapping
     public ResponseEntity<UserDto> save(@RequestBody UserDto userDto){
         User user = userConverter.toUser(userDto);

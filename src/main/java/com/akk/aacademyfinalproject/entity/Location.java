@@ -25,6 +25,6 @@ public class Location {
     private String locName;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "location_id")
     private User user;
 }
